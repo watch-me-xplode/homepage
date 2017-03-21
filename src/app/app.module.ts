@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { D3Service } from 'd3-ng2-service';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -14,7 +16,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    D3Service
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
