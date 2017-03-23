@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
 
+import { FontDrawer } from "./shared/services/font.drawer.service";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
+
+  constructor(private fontDrawer: FontDrawer) {
+    fontDrawer.draw();
+    setTimeout(() => fontDrawer.switchSocketContainer(), 1000);
+  }
+
 }

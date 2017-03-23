@@ -50,11 +50,12 @@ export class NaviDrawer {
             .attr("r", 40)
             .style("fill", "#000")
             .style("opacity", 0.2)
-            .on("mousedown", () => {
+            .on("pointerdown", () => {
                 this.menustate = 0;
                 this.draw();
             })
-            .on("mouseup", () => {
+            .on("pointerup", () => {
+                console.log("touchend");
                 this.menustate = 0;
                 this.draw();
             });
@@ -77,13 +78,16 @@ export class NaviDrawer {
                 .duration(100)
                 .style("opacity", 0.6);
             })
-            .on("mousedown", () => {
+            .on("pointerdown", () => {
                 this.menustate = 0;
                 this.draw();
             })
-            .on("mouseup", () => {
+            .on("pointerup", () => {
                 this.menustate = 0;
                 this.draw();
+            })
+            .on("pointerenter", () => {
+                console.log("over");
             });
 
         this.innerCircle = this.svgContainer.append("circle")
@@ -92,13 +96,22 @@ export class NaviDrawer {
             .attr("r", 40)
             .style("fill", "#0099CC")
             .style("opacity", 0.8)
-            .on("mousedown", () => {
+            .on("pointerdown", () => {
                 this.menustate = this.menustate === 0 ? 1 : 0;
                 this.draw();
             })
-            .on("mouseup", () => {
+            .on("pointerup", () => {
                 this.menustate = this.menustate === 1 ? 2 : 0;
                 this.draw();
+            })
+            .on("touchstart", () => {
+                event.preventDefault();
+            })
+            .on("touchend", () => {
+                event.preventDefault();
+            })
+            .on("touchmove", () => {
+                event.preventDefault();
             });
 
             
