@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { FontDrawer } from "./shared/services/font.drawer.service";
 
@@ -7,11 +7,13 @@ import { FontDrawer } from "./shared/services/font.drawer.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor(private fontDrawer: FontDrawer) {
-    fontDrawer.draw();
-    setInterval(() => fontDrawer.switchSocketContainer(), 5000);
+  constructor(private fontDrawer: FontDrawer) { }
+
+  ngOnInit(): void {
+    this.fontDrawer.draw();
+    setTimeout(() => this.fontDrawer.switchSocketContainer(), 5000);
   }
 
 }

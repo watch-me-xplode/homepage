@@ -12,6 +12,6 @@ export class NaviComponent implements OnInit {
   constructor(private naviDrawer: NaviDrawer) { }
 
   ngOnInit() {
-    this.naviDrawer.draw();
+    //this.naviDrawer.draw();
   }
 }
