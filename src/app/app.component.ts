@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(private fontDrawer: FontDrawer) {
     fontDrawer.draw();
-    setTimeout(() => fontDrawer.switchSocketContainer(), 1000);
+    setInterval(() => fontDrawer.switchSocketContainer(), 5000);
   }
 
 }

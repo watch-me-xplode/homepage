@@ -13,6 +13,7 @@ export class FontDrawer {
     private d3: D3;
     private svgContainer: any;
     private wordSocketContainer: WordSocketContainer;
+    private currentSocketContainer: WordSocketContainer;
     private wordSocketContainer2: WordSocketContainer;
     private fonts: Font[] = [];
 
@@ -21,35 +22,26 @@ export class FontDrawer {
     }
 
     public draw(): void {
+        console.log("draw");
         if (this.svgContainer == null) {
             this.init();
         }
+        this.currentSocketContainer.getFontSockets().forEach(socket => socket.setFilled(false));
+        this.fonts.forEach(font => {
+            font.setInset(false);
+            this.updateFont(font);
+        });
+        this.clearFonts();
+        this.createFonts();
+    }
 
-        //collect data
-        var fonts = this.svgContainer.selectAll(".fonts").data(this.fonts);
-        // Update
-        fonts
-            .transition()
-            .duration(1000)
-            .attr("x", (font) => font.getCoords().x);
-        //Create
-        fonts.enter().append("text")
-            .attr("class", "fonts")
-            .attr("x", (font) => font.getCoords().x)
-            .attr("y", (font) => font.getCoords().y)
-            .text((font) => font.getValue())
-            .attr("font-family", "'Roboto Mono', monospace")
-            .attr("font-size", (font) => font.getFontsize() + "px")
-            .attr("font-weight", (font) => font.isBold() ? "bold" : "none")
-            .attr("fill", "black");
-            // .transition()
-            // .delay(3000)
-            // .duration(1000)
-            // .attr("x", font => Math.floor(Math.random() * 500) + 1  );
-        //Remove
-        fonts.exit().remove();
-
-        
+    public switchSocketContainer(): void {
+        if (this.currentSocketContainer === this.wordSocketContainer) {
+            this.currentSocketContainer = this.wordSocketContainer2;
+        } else {
+            this.currentSocketContainer = this.wordSocketContainer;
+        }
+        this.draw();
     }
 
     private init(): void {
@@ -58,57 +50,73 @@ export class FontDrawer {
             .attr("height",200);
 
         let text: string = "A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred music, or a noble picture, or a passage from the grander poets. It always does one good.";
-        text = "aaaaaaaagood";
+        text = "good";
         let text2: string = "dgoo";
         this.wordSocketContainer = new WordSocketContainer(text);
         this.wordSocketContainer.setPosition(0, 0, 500);
-        this.wordSocketContainer.getWordSockets().forEach(wordSocket => {
-            wordSocket.getFontSockets().forEach(fontSocket => {
-                let font: Font = new Font(fontSocket.getValue());
-                font.setBold(fontSocket.isBold())
-                    .setPoint(fontSocket.getCoords())
-                    .setFontsize(fontSocket.getFontsize())
-                this.fonts.push(font);
-            });
-        });
         this.wordSocketContainer2 = new WordSocketContainer(text2);
         this.wordSocketContainer2.setPosition(0, 0, 500);
+        this.currentSocketContainer = this.wordSocketContainer;
     }
 
-    public switchSocketContainer(): void {
-        let emptyFontIndexList: number[] = [];
-        let counter: number = 0;
+    private updateFont(font: Font): void {
+        //search possible sockets and inlay font
         this.fonts.forEach(font => {
-            let possibleSockets: FontSocket[] = this.wordSocketContainer2.getFontSockets().filter(socket => {
-                if (socket.getValue() === font.getValue() && !socket.isFilled()) {
-                    return true;
-                } else {
-                    return false;
-                }
+            let possibleSockets: FontSocket[] = this.currentSocketContainer.getFontSockets().filter(socket => {
+                return socket.getValue() === font.getValue() && !socket.isFilled();
             });
-            if (possibleSockets.length < 1) {
-                emptyFontIndexList.push(counter);
-            } else {
+            if (possibleSockets.length > 0) {
+                //select socket randomly
                 let socket = possibleSockets[Math.floor(Math.random() * possibleSockets.length)];
-                font.setPoint(socket.getCoords());
                 socket.setFilled(true);
-            }
-            counter++;
-        });
-        //remove unused fonts from list
-        this.fonts = this.fonts.filter((font, outerIndex) => {
-            if (emptyFontIndexList.filter(innerIndex => {
-                if (outerIndex === innerIndex) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }).length > 0) {
-                return false;
+                font.setInset(true);                
+                font.setPoint(socket.getCoords());
+                //update DOM Element
+                font.getDomElement()
+                    .transition()
+                    .duration(1000)
+                    .attr("x", font.getCoords().x);
+            
             } else {
-                return true;
+                //no socket found
+                this.removeFont(font);
             }
         });
-        this.draw();
+    }
+
+    private removeFont(font: Font): void {
+        font.getDomElement().remove();
+    }
+
+    private clearFonts(): void {
+        this.fonts = this.fonts.filter(font => {
+            return font.isInset;
+        });
+    }
+
+    private createFonts(): void {
+        this.wordSocketContainer.getFontSockets().filter(socket => !socket.isFilled()).forEach(fontSocket => {
+            //create font
+            let font: Font = new Font(fontSocket.getValue());
+            font.setBold(fontSocket.isBold())
+                .setPoint(fontSocket.getCoords())
+                .setFontsize(fontSocket.getFontsize());
+            //create DOM Element
+            font.setDomElement(
+                this.svgContainer.append("text")
+                .attr("class", "fonts")
+                .attr("x", font.getCoords().x)
+                .attr("y", font.getCoords().y)
+                .text(font.getValue())
+                .attr("font-family", "'Roboto Mono', monospace")
+                .attr("font-size", font.getFontsize() + "px")
+                .attr("font-weight", font.isBold() ? "bold" : "none")
+                .attr("fill", "black"));
+                // .transition()
+                // .delay(3000)
+                // .duration(1000)
+                // .attr("x", font => Math.floor(Math.random() * 500) + 1  );
+            this.fonts.push(font);
+        });
     }
 }
