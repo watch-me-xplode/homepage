@@ -1,6 +1,7 @@
 import { WordSocketContainer } from './word-socket-container.model';
 import { WordSocket } from './word-socket.model';
 import { FontSocket } from './font-socket.model';
+import { Point } from './point.model';
 
 export class SiteSocketContainer {
 
@@ -33,7 +34,11 @@ export class SiteSocketContainer {
         return fontSockets;
     }
 
-    public setPosition(): void {
-        // todo
+    public setPosition(coords: Point[], widths: number[]): void {
+        if ((coords.length === widths.length) && (coords.length === this.containers.length)) {
+            for (let i = 0; i < this.containers.length; i++) {
+                this.containers[i].setPosition(coords[i].x, coords[i].y, widths[i]);
+            }
+        }
     }
 }
