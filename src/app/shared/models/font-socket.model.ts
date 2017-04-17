@@ -20,7 +20,7 @@ export class FontSocket {
     public getFontsize(): number { return this.fontsize; }
     public getLength(): number { return this.fontsize * 0.55; }
 
-    public setCoords(x: number, y: number): void { this.coords = new Point(x, y) }
+    public setCoords(x: number, y: number): void { this.coords = new Point(x, y); }
     public setPoint(point: Point): void { this.coords = point; }
     public setBold(bold: boolean): void { this.bold = bold; }
     public inlayFont(font: Font): void {

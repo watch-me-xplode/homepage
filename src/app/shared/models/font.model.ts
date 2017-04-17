@@ -21,9 +21,6 @@ export class Font {
     public getFontsize(): number { return this.fontsize; }
     public getDomElement(): any { return this.domElement; }
 
-    //public setCoords(x: number, y: number): Font { this.coords = new Point(x, y); return this; }
-    //public setPoint(point: Point): Font { this.coords = point; return this; }
-    //public setBold(bold: boolean): Font { this.bold = bold; return this; }
     public setIntoSocket(socket: FontSocket): Font {
         this.inset = true;
         this.coords = socket.getCoords();
@@ -34,6 +31,5 @@ export class Font {
     public removeFromSocket(): Font {
         this.inset = false; return this;
     }
-    //public setFontsize(size: number): Font { this.fontsize = size; return this; }
     public setDomElement(domElement: any): Font { this.domElement = domElement; return this; }
 }
