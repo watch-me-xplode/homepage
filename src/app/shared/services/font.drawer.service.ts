@@ -28,6 +28,7 @@ export class FontDrawer {
      * @param site (optional) changes the current font site
      */
     public draw(site?: SiteSocketContainer): void {
+        const oldSiteSocket = this.currentSiteSocket;
         if (site != null) {
             this.currentSiteSocket = site;
         }
@@ -38,7 +39,9 @@ export class FontDrawer {
         if (this.svgContainer == null) {
             this.init();
         }
-        this.currentSiteSocket.getFontSockets().forEach(socket => socket.removeFont());
+        if (oldSiteSocket != null) {
+            oldSiteSocket.getFontSockets().forEach(socket => socket.removeFont());
+        }
         this.fonts.forEach(font => this.updateFont(font));
         this.clearFonts();
         this.createFonts();

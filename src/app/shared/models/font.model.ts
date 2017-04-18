@@ -29,7 +29,8 @@ export class Font {
         return this;
     }
     public removeFromSocket(): Font {
-        this.inset = false; return this;
+        this.inset = false;
+        return this;
     }
     public setDomElement(domElement: any): Font { this.domElement = domElement; return this; }
 }

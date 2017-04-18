@@ -11,12 +11,14 @@ import { FontDrawer } from "./shared/services/font.drawer.service";
 import { AppComponent } from './app.component';
 import { NaviComponent } from './navi/navi.component';
 import { WebdesignComponent } from './webdesign/webdesign.component';
+import { BusinessComponent } from './business/business.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NaviComponent,
-    WebdesignComponent
+    WebdesignComponent,
+    BusinessComponent
   ],
   imports: [
     BrowserModule,

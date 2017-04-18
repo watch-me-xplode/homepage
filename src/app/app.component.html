@@ -1,4 +1,7 @@
-<app-navi></app-navi>
+<!--<app-navi></app-navi>-->
+
+<p (click)="switchSite('webdesign')">Webdesign</p>
+<p (click)="switchSite('business')">Business</p>
 
 <h2>Homepage v0.1</h2>
 
@@ -6,4 +9,6 @@
 
 <div id="canvas"></div>
 
-<app-webdesign (updateCanvas)="updateCanvas($event)"></app-webdesign>
+<app-webdesign *ngIf="subpage==='webdesign'" (updateCanvas)="updateCanvas($event)"></app-webdesign>
+
+<app-business *ngIf="subpage==='business'" (updateCanvas)="updateCanvas($event)"></app-business>

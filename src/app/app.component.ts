@@ -11,15 +11,18 @@ import { SiteSocketContainer } from './shared/models/site-socket.model';
 })
 export class AppComponent implements OnInit {
 
+  private subpage = 'webdesign';
+
   constructor(private fontDrawer: FontDrawer) { }
 
-  ngOnInit(): void {
-    // this.fontDrawer.draw();
-    // setTimeout(() => this.fontDrawer.switchSocketContainer(), 5000);
-  }
+  ngOnInit(): void { }
 
   private updateCanvas(site: SiteSocketContainer): void {
     this.fontDrawer.draw(site);
+  }
+
+  private switchSite(site: string): void {
+    this.subpage = site;
   }
 
 }
