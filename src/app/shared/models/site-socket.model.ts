@@ -39,6 +39,8 @@ export class SiteSocketContainer {
             for (let i = 0; i < this.containers.length; i++) {
                 this.containers[i].setPosition(coords[i].x, coords[i].y, widths[i]);
             }
+        }  else {
+            console.log('Warning: Arraylenght of coords, widths and containerelements is unequal.');
         }
     }
 }

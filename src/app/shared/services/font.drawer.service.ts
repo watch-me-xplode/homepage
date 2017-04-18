@@ -23,7 +23,18 @@ export class FontDrawer {
         this.d3 = this.d3service.getD3();
     }
 
-    public draw(): void {
+    /**
+     * draw/update fonts
+     * @param site (optional) changes the current font site
+     */
+    public draw(site?: SiteSocketContainer): void {
+        if (site != null) {
+            this.currentSiteSocket = site;
+        }
+        if (this.currentSiteSocket == null) {
+            console.log('Error: no current site to draw.');
+            return;
+        }
         if (this.svgContainer == null) {
             this.init();
         }
@@ -45,22 +56,7 @@ export class FontDrawer {
     private init(): void {
         this.svgContainer = this.d3.select('#canvas').append('svg')
             .attr('width', 1000)
-            .attr('height', 600);
-
-        const text1: string[] = [`A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred music, 
-        or a noble picture, or a passage from the grander poets. It always does one good.`];
-        text1.push(text1[0]);
-        text1.push(text1[0]);
-        const text2: string[] = [`Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the 
-        stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on 
-        a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, 
-        whose upper half was strewn with silver.`];
-        text2.push(text2[0]);
-        this.siteSocket1 = new SiteSocketContainer(text1);
-        this.siteSocket1.setPosition([new Point(0, 0), new Point(0, 500), new Point(0, 1000)], [500, 500, 500]);
-        this.siteSocket2 = new SiteSocketContainer(text2);
-        this.siteSocket2.setPosition([new Point(0, 0), new Point(0, 500), new Point(0, 1000)], [500, 500, 500]);
-        this.currentSiteSocket = this.siteSocket1;
+            .attr('height', 1200);
     }
 
     private updateFont(font: Font): void {
@@ -106,9 +102,10 @@ export class FontDrawer {
     }
 
     private createFonts(): void {
-        this.currentSiteSocket.getFontSockets().filter(socket => !socket.isFilled()).forEach(fontSocket => {
+        this.currentSiteSocket.getFontSockets().filter(socket => !socket.isFilled()).forEach(socket => {
             // create font
-            const font: Font = new Font(fontSocket.getValue());
+            const font: Font = new Font(socket.getValue());
+            socket.inlayFont(font);
             // create DOM Element
             font.setDomElement(this.svgContainer.append('text'));
             font.getDomElement()
