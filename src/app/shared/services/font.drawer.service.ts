@@ -25,6 +25,11 @@ export class FontDrawer {
 
     /**
      * draw/update fonts
+     * 1. check requirements
+     * 2. unsocket all old fonts
+     * 3. update fonts
+     * 4. clear all unused fonts
+     * 5. create new fonts
      * @param site (optional) changes the current font site
      */
     public draw(site?: SiteSocketContainer): void {

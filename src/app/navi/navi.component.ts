@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NaviDrawer } from "../shared/services/navi.drawer.service";
-
 @Component({
   selector: 'app-navi',
   templateUrl: './navi.component.html',
@@ -9,9 +7,7 @@ import { NaviDrawer } from "../shared/services/navi.drawer.service";
 })
 export class NaviComponent implements OnInit {
 
-  constructor(private naviDrawer: NaviDrawer) { }
+  constructor() { }
 
-  ngOnInit() {
-    //this.naviDrawer.draw();
-  }
+  ngOnInit() { }
 }
