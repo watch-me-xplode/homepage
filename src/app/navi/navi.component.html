@@ -1,6 +1,4 @@
 <div id="wrapper">
-    <p>Home</p>
-    <p>Webdesign</p>
-    <p>Business</p>
-    <p>Education</p>
+    <p [ngClass]="{'active': subpage === 'webdesign'}" (click)="goto('webdesign')">Webdesign</p>
+    <p [ngClass]="{'active': subpage === 'business'}" (click)="goto('business')">Business</p>
 </div>

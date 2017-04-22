@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navi',
@@ -7,7 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NaviComponent implements OnInit {
 
+  @Output() switchSite = new EventEmitter<string>();
+
+  private subpage = 'webdesign';
+
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.switchSite.emit(this.subpage);
+  }
+
+  private goto(subpage: string): void {
+    this.subpage = subpage;
+    this.switchSite.emit(subpage);
+  }
 }

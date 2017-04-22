@@ -1,8 +1,3 @@
-<!--<app-navi></app-navi>-->
-
-<p (click)="switchSite('webdesign')">Webdesign</p>
-<p (click)="switchSite('business')">Business</p>
-
 <h2>Homepage v0.1</h2>
 
 <img src="./assets/pics/profilpic_3.jpg" alt="Nikolai Wohlgemuth">
@@ -12,3 +7,5 @@
 <app-webdesign *ngIf="subpage==='webdesign'" (updateCanvas)="updateCanvas($event)"></app-webdesign>
 
 <app-business *ngIf="subpage==='business'" (updateCanvas)="updateCanvas($event)"></app-business>
+
+<app-navi (switchSite)="switchSite($event)"></app-navi>
