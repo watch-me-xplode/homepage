@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
+import { NaviDrawer } from '../shared/services/navi.drawer.service';
+
 @Component({
   selector: 'app-navi',
   templateUrl: './navi.component.html',
@@ -11,10 +13,11 @@ export class NaviComponent implements OnInit {
 
   private subpage = 'webdesign';
 
-  constructor() { }
+  constructor(private drawer: NaviDrawer) { }
 
   ngOnInit() {
     this.switchSite.emit(this.subpage);
+    this.drawer.draw();
   }
 
   private goto(subpage: string): void {
