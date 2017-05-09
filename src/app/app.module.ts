@@ -7,6 +7,7 @@ import { D3Service } from 'd3-ng2-service';
 
 import { FontDrawer } from './shared/services/font.drawer.service';
 import { NaviDrawer } from './shared/services/navi.drawer.service';
+import { NaviMenubuttonContentDrawer } from './shared/services/navi-menubutton-content.drawer.service';
 
 import { AppComponent } from './app.component';
 import { NaviComponent } from './navi/navi.component';
@@ -28,7 +29,8 @@ import { BusinessComponent } from './business/business.component';
   providers: [
     D3Service,
     FontDrawer,
-    NaviDrawer
+    NaviDrawer,
+    NaviMenubuttonContentDrawer
   ],
   bootstrap: [AppComponent]
 })
