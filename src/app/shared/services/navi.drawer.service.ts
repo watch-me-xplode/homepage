@@ -15,7 +15,7 @@ export class NaviDrawer {
     private mouseclick = false;
     private readonly height = 200;
 
-    constructor(private d3service: D3Service, private ButtoncontentDrawer: NaviMenubuttonContentDrawer) {
+    constructor(private d3service: D3Service, private contentDrawer: NaviMenubuttonContentDrawer) {
         this.d3 = this.d3service.getD3();
     }
 
@@ -44,7 +44,7 @@ export class NaviDrawer {
                     this.mousedownTimer = setTimeout(() => {
                         this.mouseclick = false;
                     } , 100);
-                    this.highlightButton(button1, button2);
+                    this.highlightButton(button1, button2, false);
                 }
             })
             .on('mouseup', () => {
@@ -69,7 +69,7 @@ export class NaviDrawer {
                     this.mousedownTimer = setTimeout(() => {
                         this.mouseclick = false;
                     } , 100);
-                    this.highlightButton(button1, button2);
+                    this.highlightButton(button1, button2, false);
                 }
             })
             .on('touchend', () => {
@@ -93,7 +93,7 @@ export class NaviDrawer {
                     this.mousedownTimer = setTimeout(() => {
                         this.mouseclick = false;
                     } , 100);
-                    this.highlightButton(button2, button1);
+                    this.highlightButton(button2, button1, true);
                 }
             })
             .on('mouseup', () => {
@@ -118,7 +118,7 @@ export class NaviDrawer {
                     this.mousedownTimer = setTimeout(() => {
                         this.mouseclick = false;
                     } , 100);
-                    this.highlightButton(button2, button1);
+                    this.highlightButton(button2, button1, true);
                 }
             })
             .on('touchend', () => {
@@ -127,8 +127,7 @@ export class NaviDrawer {
                     this.normalizeButtons(button1, button2);
                 }
             });
-
-        this.ButtoncontentDrawer.draw(this.svgContainer, 100, 600); // draw after circles to be in front of them
+        this.contentDrawer.draw(this.svgContainer, 100, 600); // draw after circles to be in front of them
     }
 
     /**
@@ -145,6 +144,7 @@ export class NaviDrawer {
 
     /**
      * Set both buttons into the normal state.
+     * Call contentDrawer to go into normal state.
      */
     private normalizeButtons(button1: any, button2: any) {
         button1
@@ -155,13 +155,16 @@ export class NaviDrawer {
             .transition()
             .duration(100)
             .attr('r', 20);
+        this.contentDrawer.highlightNone();
     }
 
     /**
      * Highlight the pressed button and hide the other one.
      * The first parameter represents the pressed button.
+     * The last parameter represents if the right button should be highlighted (to call the content service).
+     * Call contentDrawer to hightlight the button.
      */
-    private highlightButton(highlightedButton: any, hiddenButton: any) {
+    private highlightButton(highlightedButton: any, hiddenButton: any, hightlightRight: boolean) {
         highlightedButton
             .transition()
             .duration(100)
@@ -170,5 +173,10 @@ export class NaviDrawer {
             .transition()
             .duration(100)
             .attr('r', 0);
+        if (hightlightRight) {
+            this.contentDrawer.highlightRight();
+        } else {
+            this.contentDrawer.highlightLeft();
+        }
     }
 }
