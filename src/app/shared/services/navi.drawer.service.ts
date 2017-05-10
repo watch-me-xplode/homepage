@@ -33,7 +33,7 @@ export class NaviDrawer {
             .attr('cx', 100)
             .attr('cy', this.height / 2)
             .attr('r', 20)
-            .attr('fill', 'green')
+            .attr('fill', '#fff')
             .on('mousedown', () => {
                 event.preventDefault();
                 if (this.mouseclick) {
@@ -82,7 +82,7 @@ export class NaviDrawer {
             .attr('cx', 600)
             .attr('cy', this.height / 2)
             .attr('r', 20)
-            .attr('fill', 'green')
+            .attr('fill', '#fff')
             .on('mousedown', () => {
                 event.preventDefault();
                 if (this.mouseclick) {
@@ -134,7 +134,7 @@ export class NaviDrawer {
      * Create canvas to draw something on it.
      */
     private init(): void {
-        this.svgContainer = this.d3.select('#canvas').append('svg')
+        this.svgContainer = this.d3.select('#navi-canvas').append('svg')
             .attr('width', 700)
             .attr('height', this.height)
             .style('position', 'absolute')
@@ -168,7 +168,7 @@ export class NaviDrawer {
         highlightedButton
             .transition()
             .duration(100)
-            .attr('r', 30);
+            .attr('r', 20);
         hiddenButton
             .transition()
             .duration(100)

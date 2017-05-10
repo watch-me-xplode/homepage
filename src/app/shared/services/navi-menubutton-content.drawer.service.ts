@@ -9,73 +9,245 @@ export class NaviMenubuttonContentDrawer {
 
     private readonly y = 100;
     private readonly upperlineData = [
+        // closed
         new Point(10, -7),
         new Point(10, -7),
         new Point(10, -7),
         new Point(10, -7),
         new Point(10, -7),
         new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        // closed -> normal
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(10, -7),
+        // normal
+        new Point(10, -7),
+        new Point(10, -7),
+        new Point(8, -7),
+        new Point(6, -7),
         new Point(5, -7),
+        new Point(4, -7),
+        new Point(3, -7),
+        new Point(2, -7),
+        new Point(1, -7),
         new Point(0, -7),
+        new Point(-1, -7),
+        new Point(-2, -7),
+        new Point(-3, -7),
+        new Point(-4, -7),
         new Point(-5, -7),
+        new Point(-6, -7),
+        new Point(-8, -7),
         new Point(-10, -7),
+        new Point(-10, -7),
+        // normal -> open
+        new Point(-10, -7),
+        new Point(-10, -7),
+        new Point(-10, -7),
+        new Point(-10, -7),
+        new Point(-10, -7),
+        // open
         new Point(-8, -6),
+        new Point(-8, -6),
+        new Point(-7, -5.25),
+        new Point(-6, -4.5),
+        new Point(-5, -3.75),
         new Point(-4, -3),
+        new Point(-3, -2.25),
+        new Point(-2, -1.5),
+        new Point(-1, -0.75),
         new Point(0, 0),
+        new Point(1, 0.75),
+        new Point(2, 1.5),
+        new Point(3, 2.25),
         new Point(4, 3),
+        new Point(5, 3.75),
+        new Point(6, 4.5),
+        new Point(7, 5.25),
+        new Point(8, 6),
         new Point(8, 6)
     ];
     private readonly centerlineData = [
+        // closed
         new Point(-10, 0),
         new Point(-10, 0),
         new Point(-10, 0),
         new Point(-10, 0),
         new Point(-10, 0),
         new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        // closed -> normal
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-10, 0),
+        // normal
+        new Point(-10, 0),
+        new Point(-10, 0),
+        new Point(-8, 0),
+        new Point(-6, 0),
         new Point(-5, 0),
+        new Point(-4, 0),
+        new Point(-3, 0),
+        new Point(-2, 0),
+        new Point(-1, 0),
         new Point(0, 0),
+        new Point(1, 0),
+        new Point(2, 0),
+        new Point(3, 0),
+        new Point(4, 0),
         new Point(5, 0),
+        new Point(6, 0),
+        new Point(8, 0),
         new Point(10, 0),
         new Point(10, 0),
-        new Point(10, 0),
-        new Point(10, 0),
-        new Point(10, 0),
-        new Point(10, 0)
+        // normal -> open
+        new Point(13.3, -0.66),
+        new Point(16.1, -2.5),
+        new Point(18.66, -8.66),
+        new Point(16.1, -14.8),
+        new Point(13.3, -16.66),
+        // open
+        new Point(1.5, -19.95),
+        new Point(0, -20),
+        new Point(-1.5, -19.95),
+        new Point(-14, -14),
+        new Point(-18.5, -7.5),
+        new Point(-20, 0),
+        new Point(-18.5, 7.5),
+        new Point(-14, 14),
+        new Point(-1.5, 19.95),
+        new Point(0, 20),
+        new Point(1.5, 19.95),
+        new Point(14, 14),
+        new Point(18.5, 7.5),
+        new Point(20, 0),
+        new Point(18.5, -7.5),
+        new Point(14, -14),
+        new Point(1.5, -19.95),
+        new Point(0, -20),
+        new Point(-1.5, -19.95)
     ];
     private readonly lowerlineData = [
+        // closed
         new Point(10, 7),
         new Point(10, 7),
         new Point(10, 7),
         new Point(10, 7),
         new Point(10, 7),
         new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        // closed -> normal
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(10, 7),
+        // normal
+        new Point(10, 7),
+        new Point(10, 7),
+        new Point(8, 7),
+        new Point(6, 7),
         new Point(5, 7),
+        new Point(4, 7),
+        new Point(3, 7),
+        new Point(2, 7),
+        new Point(1, 7),
         new Point(0, 7),
+        new Point(-1, 7),
+        new Point(-2, 7),
+        new Point(-3, 7),
+        new Point(-4, 7),
         new Point(-5, 7),
+        new Point(-6, 7),
+        new Point(-8, 7),
         new Point(-10, 7),
+        new Point(-10, 7),
+        // normal -> open
+        new Point(-10, 7),
+        new Point(-10, 7),
+        new Point(-10, 7),
+        new Point(-10, 7),
+        new Point(-10, 7),
+        // open
         new Point(-8, 6),
+        new Point(-8, 6),
+        new Point(-7, 5.25),
+        new Point(-6, 4.5),
+        new Point(-5, 3.75),
         new Point(-4, 3),
+        new Point(-3, 2.25),
+        new Point(-2, 1.5),
+        new Point(-1, 0.75),
         new Point(0, 0),
+        new Point(1, -0.75),
+        new Point(2, -1.5),
+        new Point(3, -2.25),
         new Point(4, -3),
+        new Point(5, -3.75),
+        new Point(6, -4.5),
+        new Point(7, -5.25),
+        new Point(8, -6),
         new Point(8, -6)
     ];
     private readonly lineFunctionLeft: any;
     private readonly lineFunctionRight: any;
+    private readonly lineFunctionParam = 1;
     private d3: D3;
     private svgContainer: any;
     private x1: number;
     private x2: number;
     private animationprogress = 0;
-    private readonly animationLength = 5; // how many pathpoints are drawn at the same time
-    private readonly animationMaxprogress = 5; // the max progress of the animation
-    private readonly animationSpeed = 50; // delay between animation steps
+    private readonly animationLength = 19; // how many pathpoints are drawn at the same time
+    private readonly animationMaxprogress = 24; // the max progress of the animation
+    private readonly animationSpeed = 20; // delay between animation steps
     private animationGoal = 0;
     private leftUpperLine: any;
     private leftCenterLine: any;
     private leftBottomLine: any;
     private rightUpperLine: any;
     private rightCenterLine: any;
-    private rightBottomLine: any;
+    private rightLowerLine: any;
     private currentlyDrawing = false;
 
     constructor(private d3service: D3Service) {
@@ -83,11 +255,11 @@ export class NaviMenubuttonContentDrawer {
         this.lineFunctionLeft = this.d3.line()
             .x((d: any) => { return d.x + this.x1; })
             .y((d: any) => { return d.y + this.y; })
-            .curve(this.d3.curveCatmullRom.alpha(0.5));
+            .curve(this.d3.curveCatmullRom.alpha(this.lineFunctionParam));
         this.lineFunctionRight = this.d3.line()
             .x((d: any) => { return d.x + this.x2; })
             .y((d: any) => { return d.y + this.y; })
-            .curve(this.d3.curveCatmullRom.alpha(0.5));
+            .curve(this.d3.curveCatmullRomOpen.alpha(this.lineFunctionParam));
     }
 
     /**
@@ -126,7 +298,7 @@ export class NaviMenubuttonContentDrawer {
      * Left equals negative animation progress.
      */
     public highlightLeft() {
-        this.animationGoal = -this.animationLength;
+        this.animationGoal = -this.animationMaxprogress;
         this.draw();
     }
 
@@ -136,7 +308,7 @@ export class NaviMenubuttonContentDrawer {
      * Right equals positive animation progress.
      */
     public highlightRight() {
-        this.animationGoal = this.animationLength;
+        this.animationGoal = this.animationMaxprogress;
         this.draw();
     }
 
@@ -158,20 +330,40 @@ export class NaviMenubuttonContentDrawer {
     private drawLine(linefunction: any, linedata: Point[]): any {
         const line = this.svgContainer.append('path')
             .attr('d', linefunction(<any>linedata))
-            .attr('stroke', '#fff')
+            .attr('stroke', '#111')
             .attr('stroke-width', 3)
             .attr('fill', 'none')
             .attr('stroke-linecap', 'round')
-            .attr('pointer-events', 'none');
+            .attr('pointer-events', 'none')
+            // .style('opacity', 0)
+            // .transition()
+            // .duration(1000)
+            .style('opacity', 1);
         return line;
     }
 
+    /**
+     * Update the path and opacity of a line.
+     * Param1: line = line element to update.
+     * Param2: lineFunction = Function to calculate coords.
+     * Param3: lineData = the path on which the line will be drawn.
+     * Param4: progress = the animation progress to determine if the line should be visible or not.
+     */
+    private updateLine(line: any, lineFunction: any, lineData: any, progress: number) {
+        line.attr('d', lineFunction(<any>lineData))
+            .transition().duration(100).style('opacity',
+                ((this.animationMaxprogress + this.animationLength) / 4 > progress ? 0 : 1));
+    }
+
+    /**
+     * This function calls itself until the animation is completed.
+     */
     private animatedDraw() {
             // progress right and left only differ from the direction they are progressing.
             // because the default situation should be 0, and in the array it is another index,
             // we have to add the animation length to the animation progress
-            const progressLeft = this.animationLength - this.animationprogress;
-            const progressRight = this.animationLength + this.animationprogress;
+            const progressLeft = this.animationMaxprogress - this.animationprogress;
+            const progressRight = this.animationMaxprogress + this.animationprogress;
             const leftUpperLineCurrentData = this.upperlineData.slice(progressLeft, progressLeft + this.animationLength);
             const leftCenterLineCurrentData = this.centerlineData.slice(progressLeft, progressLeft + this.animationLength);
             const leftLowerLineCurrentData = this.lowerlineData.slice(progressLeft, progressLeft + this.animationLength);
@@ -180,20 +372,20 @@ export class NaviMenubuttonContentDrawer {
             const rightLowerLineCurrentData = this.lowerlineData.slice(progressRight, progressRight + this.animationLength);
             if (this.leftBottomLine) {
                 // update lines
-                this.leftUpperLine.attr('d', this.lineFunctionLeft(<any>leftUpperLineCurrentData));
-                this.leftCenterLine.attr('d', this.lineFunctionLeft(<any>leftCenterLineCurrentData));
-                this.leftBottomLine.attr('d', this.lineFunctionLeft(<any>leftLowerLineCurrentData));
-                this.rightUpperLine.attr('d', this.lineFunctionRight(<any>rightUpperLineCurrentData));
-                this.rightCenterLine.attr('d', this.lineFunctionRight(<any>rightCenterLineCurrentData));
-                this.rightBottomLine.attr('d', this.lineFunctionRight(<any>rightLowerLineCurrentData));
+                this.updateLine(this.leftUpperLine, this.lineFunctionLeft, leftUpperLineCurrentData, progressLeft);
+                this.updateLine(this.leftCenterLine, this.lineFunctionLeft, leftCenterLineCurrentData, progressLeft);
+                this.updateLine(this.leftBottomLine, this.lineFunctionLeft, leftLowerLineCurrentData, progressLeft);
+                this.updateLine(this.rightUpperLine, this.lineFunctionRight, rightUpperLineCurrentData, progressRight);
+                this.updateLine(this.rightCenterLine, this.lineFunctionRight, rightCenterLineCurrentData, progressRight);
+                this.updateLine(this.rightLowerLine, this.lineFunctionRight, rightLowerLineCurrentData, progressRight);
             } else {
-                // no line created yet
+                // create lines
                 this.leftUpperLine = this.drawLine(this.lineFunctionLeft, leftUpperLineCurrentData);
                 this.leftCenterLine = this.drawLine(this.lineFunctionLeft, leftCenterLineCurrentData);
                 this.leftBottomLine = this.drawLine(this.lineFunctionLeft, leftLowerLineCurrentData);
                 this.rightUpperLine = this.drawLine(this.lineFunctionRight, rightUpperLineCurrentData);
                 this.rightCenterLine = this.drawLine(this.lineFunctionRight, rightCenterLineCurrentData);
-                this.rightBottomLine = this.drawLine(this.lineFunctionRight, rightLowerLineCurrentData);
+                this.rightLowerLine = this.drawLine(this.lineFunctionRight, rightLowerLineCurrentData);
             }
             // animation handling
             setTimeout(() => {
