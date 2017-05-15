@@ -15,7 +15,12 @@ export class AppComponent implements OnInit {
 
   constructor(private fontDrawer: FontDrawer) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log(window.innerWidth);
+    console.log(window.outerWidth);
+    console.log(window.innerHeight);
+    console.log(window.outerHeight);
+  }
 
   private updateCanvas(site: SiteSocketContainer): void {
     this.fontDrawer.draw(site);

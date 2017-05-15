@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { D3Service, D3, Selection } from 'd3-ng2-service';
 
@@ -20,6 +20,9 @@ export class NaviDrawer {
     private submenusLeft: any[] = [];
     private submenusRight: any[] = [];
 
+    private getCurrentSubpage: any;
+    private setCurrentSubpage: any;
+
     constructor(private d3service: D3Service, private contentDrawer: NaviMenubuttonContentDrawer) {
         this.d3 = this.d3service.getD3();
     }
@@ -28,56 +31,14 @@ export class NaviDrawer {
      * todo
      * Call ContentDrawer to draw.
      */
-    public draw(switchSiteEmitter: EventEmitter<string>) {
+    public draw(setCurrentSubpage: (subpage: string) => void, getCurrentSubpage: () => string) {
+        this.setCurrentSubpage = setCurrentSubpage;
+        this.getCurrentSubpage = getCurrentSubpage;
         if (this.svgContainer == null) {
             this.init();
         }
-        const backButtonLeft = this.svgContainer.append('circle')
-            .attr('cx', 100)
-            .attr('cy', this.height / 2)
-            .attr('r', 70)
-            .attr('fill', 'blue')
-            .on('mouseenter', () => {
-                clearTimeout(this.mouseleaveTimer);
-            })
-            .on('mouseup', () => {
-                clearTimeout(this.mousedownTimer);
-                clearTimeout(this.mouseleaveTimer);
-                if (!this.mouseclick) {
-                    this.normalizeButtons();
-                }
-            })
-            .on('mouseleave', () => {
-                this.mouseleaveTimer = setTimeout(() => {
-                    clearTimeout(this.mousedownTimer);
-                    if (!this.mouseclick) {
-                        this.normalizeButtons();
-                    }
-                }, 100);
-            });
-        const backButtonRight = this.svgContainer.append('circle')
-            .attr('cx', 600)
-            .attr('cy', this.height / 2)
-            .attr('r', 70)
-            .attr('fill', 'blue')
-            .on('mouseenter', () => {
-                clearTimeout(this.mouseleaveTimer);
-            })
-            .on('mouseup', () => {
-                clearTimeout(this.mousedownTimer);
-                clearTimeout(this.mouseleaveTimer);
-                if (!this.mouseclick) {
-                    this.normalizeButtons();
-                }
-            })
-            .on('mouseleave', () => {
-                this.mouseleaveTimer = setTimeout(() => {
-                    clearTimeout(this.mousedownTimer);
-                    if (!this.mouseclick) {
-                        this.normalizeButtons();
-                    }
-                }, 100);
-            });
+        const backButtonLeft = this.createBackButton(new Point(100, this.height / 2));
+        const backButtonRight = this.createBackButton(new Point(600, this.height / 2));
         this.buttonLeft = this.svgContainer.append('circle');
         this.buttonRight = this.svgContainer.append('circle');
         this.buttonLeft
@@ -184,11 +145,13 @@ export class NaviDrawer {
                     this.normalizeButtons();
                 }
             });
-        this.contentDrawer.draw(this.svgContainer, 100, 600); // draw after circles to be in front of them
-        this.submenusRight.push(this.createSubmenu(switchSiteEmitter, 'webdesign', new Point(565, 70)));
-        this.submenusRight.push(this.createSubmenu(switchSiteEmitter, 'business', new Point(565, 130)));
-        this.submenusLeft.push(this.createSubmenu(switchSiteEmitter, 'webdesign', new Point(135, 70)));
-        this.submenusLeft.push(this.createSubmenu(switchSiteEmitter, 'business', new Point(135, 130)));
+        // draw submenus
+        this.submenusRight.push(this.createSubmenu('webdesign', new Point(565, 70)));
+        this.submenusRight.push(this.createSubmenu('business', new Point(565, 130)));
+        this.submenusLeft.push(this.createSubmenu('webdesign', new Point(135, 70)));
+        this.submenusLeft.push(this.createSubmenu('business', new Point(135, 130)));
+        // draw after circles to be in front of them
+        this.contentDrawer.draw(this.svgContainer, 100, 600);
     }
 
     /**
@@ -210,63 +173,67 @@ export class NaviDrawer {
     private normalizeButtons() {
         this.buttonLeft.transition().duration(500).attr('r', 20);
         this.buttonRight.transition().duration(500).attr('r', 20);
-        this.submenusLeft.forEach(submenu => {
-            submenu.transition().duration(100)
-                .attr('fill', 'red')
-                .style('display', 'none');
-        });
-        this.submenusRight.forEach(submenu => {
-            submenu.transition().duration(100)
-                .attr('fill', 'red')
-                .style('display', 'none');
-        });
         this.contentDrawer.highlightNone();
+        this.hideSubmenus();
     }
 
     /**
      * Highlight the pressed button and hide the other one.
      * Param1 = Should the right button be highlighted or the left button.
      * Call contentDrawer to hightlight the button.
+     * Show submenu of the triggered side.
      */
     private highlightButton(hightlightRight: boolean) {
         if (hightlightRight) {
             this.buttonRight.transition().duration(500).attr('r', 20);
             this.buttonLeft.transition().duration(500).attr('r', 0);
             this.contentDrawer.highlightRight();
-            this.submenusRight.forEach(submenu => {
-                submenu.style('display', 'initial');
-            });
         } else {
             this.buttonLeft.transition().duration(500).attr('r', 20);
             this.buttonRight.transition().duration(500).attr('r', 0);
             this.contentDrawer.highlightLeft();
-            this.submenusLeft.forEach(submenu => {
-                submenu.style('display', 'initial');
-            });
         }
+        this.showSubmenus(hightlightRight);
     }
 
     /**
-     * Highlight the currently selected submenu.
-     * Param1 = The Submenu element to highlight.
+     * Create BackButtons.
+     * BackButtons are invisible behind the whole navi to build a "bridge" between the main button and
+     * the subpages. With this bridge the mouseleave-event can be handled properly.
      */
-    private highlightSubmenu(submenu: any) {
-        submenu.transition().duration(100).attr('fill', 'yellow');
-    }
-
-    /**
-     * Unhighlight the currently selected submenu.
-     * Param1 = The Submenu element to normalize.
-     */
-    private unhighlightSubmenu(submenu: any) {
-        submenu.transition().duration(100).attr('fill', 'red');
+    private createBackButton(coords: Point): any {
+        const button = this.svgContainer.append('circle')
+            .attr('cx', coords.x)
+            .attr('cy', coords.y)
+            .attr('r', 70)
+            .attr('fill', 'blue')
+            .on('mouseenter', () => {
+                clearTimeout(this.mouseleaveTimer);
+            })
+            .on('mouseup', () => {
+                clearTimeout(this.mousedownTimer);
+                clearTimeout(this.mouseleaveTimer);
+                if (!this.mouseclick) {
+                    this.normalizeButtons();
+                }
+            })
+            .on('mouseleave', () => {
+                this.mouseleaveTimer = setTimeout(() => {
+                    clearTimeout(this.mousedownTimer);
+                    if (!this.mouseclick) {
+                        this.normalizeButtons();
+                    }
+                }, 100);
+            });
+        return button;
     }
 
     /**
      * Create an submenu element.
-     * todo
+     * Param1 = The type of the submenu (the subpage it represents).
+     * Param2 = The coords where to draw the submenu.
      */
-    private createSubmenu(switchSiteEmitter: EventEmitter<string>, type: string, coords: Point): any {
+    private createSubmenu(type: string, coords: Point): any {
         const submenu = this.svgContainer.append('circle')
             .attr('cx', coords.x)
             .attr('cy', coords.y)
@@ -275,10 +242,14 @@ export class NaviDrawer {
             .style('display', 'none')
             .on('mouseenter', () => {
                 clearTimeout(this.mouseleaveTimer);
-                this.highlightSubmenu(submenu);
+                if (!this.isCurrentSubmenu(type)) {
+                    this.highlightSubmenu(submenu);
+                }
             })
             .on('mouseleave', () => {
-                this.unhighlightSubmenu(submenu);
+                if (!this.isCurrentSubmenu(type)) {
+                    this.unhighlightSubmenu(submenu);
+                }
                 this.mouseleaveTimer = setTimeout(() => {
                     clearTimeout(this.mousedownTimer);
                     if (!this.mouseclick) {
@@ -298,8 +269,64 @@ export class NaviDrawer {
                 clearTimeout(this.mouseleaveTimer);
                 clearTimeout(this.mousedownTimer);
                 this.normalizeButtons();
-                switchSiteEmitter.emit(type);
+                this.setCurrentSubpage(type);
             });
         return submenu;
+    }
+
+    /**
+     * Show submenus of triggered side.
+     * Param1 = If true, the right side was triggered.
+     */
+    private showSubmenus(showRight: boolean) {
+        if (showRight) {
+            this.submenusRight.forEach(submenu => {
+                submenu.style('display', 'initial');
+            });
+        } else {
+            this.submenusLeft.forEach(submenu => {
+                submenu.style('display', 'initial');
+            });
+        }
+    }
+
+    /**
+     * Hide all submenus.
+     */
+    private hideSubmenus() {
+        this.submenusLeft.forEach(submenu => {
+            submenu.transition().duration(100)
+                .attr('fill', 'red')
+                .style('display', 'none');
+        });
+        this.submenusRight.forEach(submenu => {
+            submenu.transition().duration(100)
+                .attr('fill', 'red')
+                .style('display', 'none');
+        });
+    }
+
+    /**
+     * Highlight the currently selected submenu.
+     * Param1 = The Submenu element to highlight.
+     */
+    private highlightSubmenu(submenu: any) {
+        submenu.transition().duration(100).attr('fill', 'yellow');
+    }
+
+    /**
+     * Unhighlight the currently selected submenu.
+     * Param1 = The Submenu element to normalize.
+     */
+    private unhighlightSubmenu(submenu: any) {
+        submenu.transition().duration(100).attr('fill', 'red');
+    }
+
+    /**
+     * Returns true if the submenu type is currently visible.
+     * Param1 = The type to reference the subpage title.
+     */
+    private isCurrentSubmenu(type: string) {
+        return type === this.getCurrentSubpage();
     }
 }

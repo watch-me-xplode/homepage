@@ -268,7 +268,7 @@ export class NaviMenubuttonContentDrawer {
     public draw(svgContainer?: any, x1?: number, x2?: number) {
         // check if the animation is still drawing
         if (this.currentlyDrawing) {
-            console.log('Warning: Animation is still in progress.');
+            // console.log('Warning: Animation is still in progress.'); spams console output ;)
             return;
         }
         // error handling

@@ -16,7 +16,7 @@ export class NaviComponent implements OnInit {
   constructor(private drawer: NaviDrawer) { }
 
   ngOnInit() {
-    this.drawer.draw(this.switchSite);
+    this.drawer.draw((subpage) => this.goto(subpage), () => this.subpage);
     // this.switchSite.emit(this.subpage); throws error
   }
 
