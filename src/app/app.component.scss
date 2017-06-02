@@ -4,15 +4,6 @@
     overflow: hidden;
     position: relative;
     width: 100vw;
-    #background-image {
-        min-height: calc(100% + 2rem);
-        min-width: calc(100% + 2rem);
-        filter: blur(5px) grayscale(10%);
-        position: absolute;
-        top: -1rem;
-        left: -1rem;
-        z-index: -10;
-    }
     #profilpic {
         width: 30%;
     }

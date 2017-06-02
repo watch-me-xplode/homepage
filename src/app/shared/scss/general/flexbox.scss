@@ -1,0 +1,14 @@
+@mixin flexbox-container($direction: row, $wrap: nowrap, $justifyContent: space-between, $alignItems: center, $flex: flex, $alignContent: center) {
+    display: $flex; // flex | inline-flex
+    flex-direction: $direction; // row | row-reverse | column | column-reverse
+    flex-wrap: $wrap; // nowrap | wrap | wrap-reverse
+    justify-content: $justifyContent; // flex-start | flex-end | center | space-between | space-around
+    align-items: $alignItems; // flex-start | flex-end | center | baseline | stretch
+    align-content: $alignContent; // flex-start | flex-end | center | space-between | space-around | stretch
+}
+
+@mixin flexbox-item($grow: 0, $shrink: 1, $base: auto, $align: auto, $order: 1) {
+    order: $order; //integer
+    flex: $grow $shrink $base; //integer integer size
+    align-self: $align; // auto | flex-start | flex-end | center | baseline | stretch
+}

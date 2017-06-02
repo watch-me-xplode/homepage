@@ -11,7 +11,7 @@ import { SiteSocketContainer } from './shared/models/site-socket.model';
 })
 export class AppComponent implements OnInit {
 
-  private subpage;
+  private subpage = '';
 
   constructor(private fontDrawer: FontDrawer) { }
 

@@ -1,3 +1,4 @@
-<p>
-  background-image works!
-</p>
+<div id="wrapper">
+    <img src="./assets/pics/wald.jpg" alt="Wald" id="background-image" [ngClass]="{'active': imageOneActive}">
+    <img src="./assets/pics/wald2.jpg" alt="Wald" id="background-image" [ngClass]="{'active': !imageOneActive}">
+</div>

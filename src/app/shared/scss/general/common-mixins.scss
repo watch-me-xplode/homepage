@@ -1,0 +1,87 @@
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin radial-gradient($color1, $color2) {
+    background: $color1; //For browsers that do not support gradients
+    background: -webkit-radial-gradient($color1 40%, $color2 75%); //Safari 5.1 to 6.0
+    background: -webkit-gradient(radial, $color1 40%, $color2 75%); //Safari 5.1 to 6.0
+    background: -o-radial-gradient($color1 40%, $color2 75%); //For Opera 11.6 to 12.0
+    background: -ms-radial-gradient($color1 40%, $color2 75%); //
+    background: -moz-radial-gradient($color1 40%, $color2 75%); //For Firefox 3.6 to 15
+    background: radial-gradient($color1 40%, $color2 75%); //Standard syntax
+}
+
+@mixin font-size-normal() {
+    font-size: 1rem;
+    @media screen and (min-width: $tablet-min) {
+        font-size: 1.1rem;
+    }
+}
+
+@mixin font-size-great() {
+    font-size: 1.1rem;
+    @media screen and (min-width: $tablet-min) {
+        font-size: 1.3rem;
+    }
+}
+
+@mixin font-size-greater() {
+    font-size: 1.3rem;
+    @media screen and (min-width: $tablet-min) {
+        font-size: 1.5rem;
+    }
+}
+
+@mixin font-size-greatest() {
+    font-size: 1.5rem;
+    @media screen and (min-width: $tablet-min) {
+        font-size: 2rem;
+    }
+}
+
+@mixin font-size-huge() {
+    font-size: 3rem;
+    @media screen and (min-width: $tablet-min) {
+        font-size: 5rem;
+    }
+    @media screen and (min-width: $desktop-min) {
+        font-size: 6rem;
+    }
+}
+
+@mixin transition($value) {
+    //value like: width 2s or width 2s, height 4s
+    -webkit-transition: $value; //For Safari 3.1 to 6.0
+    transition: $value;
+}
+
+@mixin transform($value) {
+    //value like: scale(1.2)
+    transform: $value;
+    -webkit-transform: $value;
+    -moz-transform: $value;
+    -ms-transform: $value;
+    -o-transform: $value;
+}
+
+@mixin drop-shadow($value) {
+    //value like: 8px 8px 10px red
+    -webkit-filter: drop-shadow($value); //Safari 6.0 - 9.0
+    filter: drop-shadow($value);
+}
+
+@mixin filter($value) {
+    //value like: sepia(100%)
+    -webkit-filter: $value; // Safari
+    filter: $value;
+}
+
+@mixin filter-i($value) {
+    //value like: sepia(100%)
+    -webkit-filter: $value !important; // Safari
+    filter: $value !important;
+}
