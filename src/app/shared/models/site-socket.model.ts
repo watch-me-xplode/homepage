@@ -34,6 +34,11 @@ export class SiteSocketContainer {
         return fontSockets;
     }
 
+    /**
+     * Set the position of the containers on the canvas.
+     * @param coords An Array of Points which represents the starting coords of each text container.
+     * @param widths An Array which represents the length of each text container
+     */
     public setPosition(coords: Point[], widths: number[]): void {
         if ((coords.length === widths.length) && (coords.length === this.containers.length)) {
             for (let i = 0; i < this.containers.length; i++) {

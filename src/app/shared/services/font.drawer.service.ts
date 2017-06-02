@@ -63,8 +63,8 @@ export class FontDrawer {
 
     private init(): void {
         this.svgContainer = this.d3.select('#canvas').append('svg')
-            .attr('width', 1000)
-            .attr('height', 1200);
+            .attr('width', 500)
+            .attr('height', 700);
     }
 
     private updateFont(font: Font): void {

@@ -19,7 +19,7 @@ export class WebdesignComponent implements OnInit {
       text.push(text[0]);
       text.push(text[0]);
       const siteSocket = new SiteSocketContainer(text);
-      siteSocket.setPosition([new Point(0, 0), new Point(0, 500), new Point(0, 1000)], [500, 500, 500]);
+      siteSocket.setPosition([new Point(0, 0), new Point(0, 130), new Point(0, 260)], [500, 500, 500]);
       this.updateCanvas.emit(siteSocket);
   }
 }

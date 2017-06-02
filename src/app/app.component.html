@@ -1,11 +1,16 @@
-<h2>Homepage v0.1</h2>
+<div id="wrapper">
+    <h2>Homepage v0.1</h2>
 
-<img src="./assets/pics/profilpic_3.jpg" alt="Nikolai Wohlgemuth">
+    <img src="./assets/pics/wald.jpg" alt="Wald" id="background-image">
+    <app-background-image [currentSite]="subpage"></app-background-image>
 
-<div id="canvas"></div>
+    <img src="./assets/pics/profilpic_2_frei.png" alt="Nikolai Wohlgemuth" id="profilpic">
 
-<app-webdesign *ngIf="subpage==='webdesign'" (updateCanvas)="updateCanvas($event)"></app-webdesign>
+    <div id="canvas"></div>
 
-<app-business *ngIf="subpage==='business'" (updateCanvas)="updateCanvas($event)"></app-business>
+    <app-webdesign *ngIf="subpage==='webdesign'" (updateCanvas)="updateCanvas($event)"></app-webdesign>
 
-<app-navi (switchSite)="switchSite($event)"></app-navi>
+    <app-business *ngIf="subpage==='business'" (updateCanvas)="updateCanvas($event)"></app-business>
+
+    <app-navi (switchSite)="switchSite($event)"></app-navi>
+</div>

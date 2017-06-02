@@ -14,7 +14,6 @@ export class NaviDrawer {
     private mousedownTimer: any;
     private mouseleaveTimer: any;
     private mouseclick = false;
-    private readonly height = 200;
     private buttonLeft: any;
     private buttonRight: any;
     private submenusLeft: any[] = [];
@@ -22,6 +21,11 @@ export class NaviDrawer {
 
     private getCurrentSubpage: any;
     private setCurrentSubpage: any;
+
+    private readonly sidePadding = 100;
+    private readonly height = 200;
+    private readonly clickHoverDelay = 200;
+    private readonly mouseleaveDelay = 100;
 
     constructor(private d3service: D3Service, private contentDrawer: NaviMenubuttonContentDrawer) {
         this.d3 = this.d3service.getD3();
@@ -37,12 +41,12 @@ export class NaviDrawer {
         if (this.svgContainer == null) {
             this.init();
         }
-        const backButtonLeft = this.createBackButton(new Point(100, this.height / 2));
-        const backButtonRight = this.createBackButton(new Point(600, this.height / 2));
+        const backButtonLeft = this.createBackButton(new Point(this.sidePadding, this.height / 2));
+        const backButtonRight = this.createBackButton(new Point(window.innerWidth - this.sidePadding, this.height / 2));
         this.buttonLeft = this.svgContainer.append('circle');
         this.buttonRight = this.svgContainer.append('circle');
         this.buttonLeft
-            .attr('cx', 100)
+            .attr('cx', this.sidePadding)
             .attr('cy', this.height / 2)
             .attr('r', 20)
             .attr('fill', '#fff')
@@ -55,7 +59,7 @@ export class NaviDrawer {
                     this.mouseclick = true;
                     this.mousedownTimer = setTimeout(() => {
                         this.mouseclick = false;
-                    } , 100);
+                    } , this.clickHoverDelay);
                     this.highlightButton(false);
                 }
             })
@@ -66,13 +70,16 @@ export class NaviDrawer {
                     this.normalizeButtons();
                 }
             })
+            .on('mouseenter', () => {
+                clearTimeout(this.mouseleaveTimer);
+            })
             .on('mouseleave', () => {
                 this.mouseleaveTimer = setTimeout(() => {
                     clearTimeout(this.mousedownTimer);
                     if (!this.mouseclick) {
                         this.normalizeButtons();
                     }
-                }, 100);
+                }, this.mouseleaveDelay);
             })
             .on('touchstart', () => {
                 event.preventDefault();
@@ -83,7 +90,7 @@ export class NaviDrawer {
                     this.mouseclick = true;
                     this.mousedownTimer = setTimeout(() => {
                         this.mouseclick = false;
-                    } , 100);
+                    } , this.clickHoverDelay);
                     this.highlightButton(false);
                 }
             })
@@ -94,7 +101,7 @@ export class NaviDrawer {
                 }
             });
         this.buttonRight
-            .attr('cx', 600)
+            .attr('cx', window.innerWidth - this.sidePadding)
             .attr('cy', this.height / 2)
             .attr('r', 20)
             .attr('fill', '#fff')
@@ -107,7 +114,7 @@ export class NaviDrawer {
                     this.mouseclick = true;
                     this.mousedownTimer = setTimeout(() => {
                         this.mouseclick = false;
-                    } , 100);
+                    } , this.clickHoverDelay);
                     this.highlightButton(true);
                 }
             })
@@ -118,13 +125,16 @@ export class NaviDrawer {
                     this.normalizeButtons();
                 }
             })
+            .on('mouseenter', () => {
+                clearTimeout(this.mouseleaveTimer);
+            })
             .on('mouseleave', () => {
                 this.mouseleaveTimer = setTimeout(() => {
                     clearTimeout(this.mousedownTimer);
                     if (!this.mouseclick) {
                         this.normalizeButtons();
                     }
-                }, 100);
+                }, this.mouseleaveDelay);
             })
             .on('touchstart', () => {
                 event.preventDefault();
@@ -135,7 +145,7 @@ export class NaviDrawer {
                     this.mouseclick = true;
                     this.mousedownTimer = setTimeout(() => {
                         this.mouseclick = false;
-                    } , 100);
+                    } , this.clickHoverDelay);
                     this.highlightButton(true);
                 }
             })
@@ -146,12 +156,12 @@ export class NaviDrawer {
                 }
             });
         // draw submenus
-        this.submenusRight.push(this.createSubmenu('webdesign', new Point(565, 70)));
-        this.submenusRight.push(this.createSubmenu('business', new Point(565, 130)));
-        this.submenusLeft.push(this.createSubmenu('webdesign', new Point(135, 70)));
-        this.submenusLeft.push(this.createSubmenu('business', new Point(135, 130)));
+        this.submenusRight.push(this.createSubmenu('webdesign', new Point(window.innerWidth - this.sidePadding - 35, this.height / 2 - 30)));
+        this.submenusRight.push(this.createSubmenu('business', new Point(window.innerWidth - this.sidePadding - 35, this.height / 2 + 30)));
+        this.submenusLeft.push(this.createSubmenu('webdesign', new Point(this.sidePadding + 35, this.height / 2 - 30)));
+        this.submenusLeft.push(this.createSubmenu('business', new Point(this.sidePadding + 35, this.height / 2 + 30)));
         // draw after circles to be in front of them
-        this.contentDrawer.draw(this.svgContainer, 100, 600);
+        this.contentDrawer.draw(this.svgContainer, this.sidePadding, window.innerWidth - this.sidePadding);
     }
 
     /**
@@ -159,10 +169,10 @@ export class NaviDrawer {
      */
     private init(): void {
         this.svgContainer = this.d3.select('#navi-canvas').append('svg')
-            .attr('width', 700)
+            .attr('width', window.innerWidth)
             .attr('height', this.height)
             .style('position', 'absolute')
-            .style('top', 0)
+            .style('bottom', 0)
             .style('left', 0);
     }
 
@@ -223,7 +233,7 @@ export class NaviDrawer {
                     if (!this.mouseclick) {
                         this.normalizeButtons();
                     }
-                }, 100);
+                }, this.mouseleaveDelay);
             });
         return button;
     }
@@ -255,13 +265,14 @@ export class NaviDrawer {
                     if (!this.mouseclick) {
                         this.normalizeButtons();
                     }
-                }, 100);
+                }, this.mouseleaveDelay);
             })
             .on('mouseup', () => {
                 clearTimeout(this.mousedownTimer);
                 clearTimeout(this.mouseleaveTimer);
                 if (!this.mouseclick) {
                     this.normalizeButtons();
+                    this.setCurrentSubpage(type);
                 }
             })
             .on('click', () => {

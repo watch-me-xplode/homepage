@@ -13,13 +13,15 @@ import { AppComponent } from './app.component';
 import { NaviComponent } from './navi/navi.component';
 import { WebdesignComponent } from './webdesign/webdesign.component';
 import { BusinessComponent } from './business/business.component';
+import { BackgroundImageComponent } from './background-image/background-image.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NaviComponent,
     WebdesignComponent,
-    BusinessComponent
+    BusinessComponent,
+    BackgroundImageComponent
   ],
   imports: [
     BrowserModule,
