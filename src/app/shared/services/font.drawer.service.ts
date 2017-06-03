@@ -80,8 +80,7 @@ export class FontDrawer {
             font.getDomElement()
                 .transition()
                 .duration(2000)
-                .attr('x', font.getCoords().x)
-                .attr('y', font.getCoords().y);
+                .style('transform', 'translate(' + font.getCoords().x + 'px,' + font.getCoords().y + 'px)');
         } else {
             // no socket found
             this.removeFontFromDOM(font);
@@ -117,8 +116,7 @@ export class FontDrawer {
             // create DOM Element
             font.setDomElement(this.svgContainer.append('text'));
             font.getDomElement()
-                .attr('x', font.getCoords().x)
-                .attr('y', font.getCoords().y)
+                .style('transform', 'translate(' + font.getCoords().x + 'px,' + font.getCoords().y + 'px)')
                 .text(font.getValue())
                 .attr('font-family', 'Roboto Mono, monospace')
                 .attr('font-size', font.getFontsize() + 'px')
