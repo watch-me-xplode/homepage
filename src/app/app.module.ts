@@ -14,6 +14,9 @@ import { NaviComponent } from './navi/navi.component';
 import { WebdesignComponent } from './webdesign/webdesign.component';
 import { BusinessComponent } from './business/business.component';
 import { BackgroundImageComponent } from './background-image/background-image.component';
+import { HomeComponent } from './home/home.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { ImpressumComponent } from './impressum/impressum.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { BackgroundImageComponent } from './background-image/background-image.co
     NaviComponent,
     WebdesignComponent,
     BusinessComponent,
-    BackgroundImageComponent
+    BackgroundImageComponent,
+    HomeComponent,
+    AboutMeComponent,
+    ImpressumComponent
   ],
   imports: [
     BrowserModule,

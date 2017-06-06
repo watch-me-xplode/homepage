@@ -49,7 +49,8 @@ export class NaviDrawer {
             .attr('cx', this.sidePadding)
             .attr('cy', this.height / 2)
             .attr('r', 20)
-            .attr('fill', '#fff')
+            .attr('fill', 'rgba(255, 255, 255, 0.4)')
+            .style('cursor', 'pointer')
             .on('mousedown', () => {
                 event.preventDefault();
                 if (this.mouseclick) {
@@ -104,7 +105,8 @@ export class NaviDrawer {
             .attr('cx', window.innerWidth - this.sidePadding)
             .attr('cy', this.height / 2)
             .attr('r', 20)
-            .attr('fill', '#fff')
+            .attr('fill', 'rgba(255, 255, 255, 0.4)')
+            .style('cursor', 'pointer')
             .on('mousedown', () => {
                 event.preventDefault();
                 if (this.mouseclick) {
@@ -156,10 +158,14 @@ export class NaviDrawer {
                 }
             });
         // draw submenus
+        this.submenusRight.push(this.createSubmenu('home', new Point(window.innerWidth - this.sidePadding + 25, this.height / 2 - 40)));
         this.submenusRight.push(this.createSubmenu('webdesign', new Point(window.innerWidth - this.sidePadding - 35, this.height / 2 - 30)));
         this.submenusRight.push(this.createSubmenu('business', new Point(window.innerWidth - this.sidePadding - 35, this.height / 2 + 30)));
+        this.submenusRight.push(this.createSubmenu('aboutme', new Point(window.innerWidth - this.sidePadding + 25, this.height / 2 + 40)));
+        this.submenusLeft.push(this.createSubmenu('home', new Point(this.sidePadding - 25, this.height / 2 - 40)));
         this.submenusLeft.push(this.createSubmenu('webdesign', new Point(this.sidePadding + 35, this.height / 2 - 30)));
         this.submenusLeft.push(this.createSubmenu('business', new Point(this.sidePadding + 35, this.height / 2 + 30)));
+        this.submenusLeft.push(this.createSubmenu('aboutme', new Point(this.sidePadding - 25, this.height / 2 + 40)));
         // draw after circles to be in front of them
         this.contentDrawer.draw(this.svgContainer, this.sidePadding, window.innerWidth - this.sidePadding);
     }
@@ -215,8 +221,8 @@ export class NaviDrawer {
         const button = this.svgContainer.append('circle')
             .attr('cx', coords.x)
             .attr('cy', coords.y)
-            .attr('r', 70)
-            .attr('fill', 'blue')
+            .attr('r', 75)
+            .attr('fill', 'rgba(255,255,255,0)')
             .on('mouseenter', () => {
                 clearTimeout(this.mouseleaveTimer);
             })

@@ -1,13 +1,19 @@
 <div id="wrapper">
     <app-background-image [currentSite]="subpage"></app-background-image>
 
-    <img src="./assets/pics/profilpic_2_frei.png" alt="Nikolai Wohlgemuth" id="profilpic">
+    <!--<img src="./assets/pics/profilpic_2_frei.png" alt="Nikolai Wohlgemuth" id="profilpic">-->
 
     <div id="canvas"></div>
+
+    <app-home *ngIf="subpage==='home'" (updateCanvas)="updateCanvas($event)"></app-home>
 
     <app-webdesign *ngIf="subpage==='webdesign'" (updateCanvas)="updateCanvas($event)"></app-webdesign>
 
     <app-business *ngIf="subpage==='business'" (updateCanvas)="updateCanvas($event)"></app-business>
+
+    <app-about-me *ngIf="subpage==='aboutme'" (updateCanvas)="updateCanvas($event)"></app-about-me>
+
+    <app-impressum *ngIf="subpage==='impressum'" (updateCanvas)="updateCanvas($event)"></app-impressum>
 
     <app-navi (switchSite)="switchSite($event)"></app-navi>
 </div>

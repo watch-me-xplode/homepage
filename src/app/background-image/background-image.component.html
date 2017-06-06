@@ -1,4 +1,19 @@
 <div id="wrapper">
-    <img src="./assets/pics/wald.jpg" alt="Wald" id="background-image" [ngClass]="{'active': imageOneActive}">
-    <img src="./assets/pics/wald2.jpg" alt="Wald" id="background-image" [ngClass]="{'active': !imageOneActive}">
+    <!-- home -->
+    <img src="./assets/pics/notredame-mobile.jpg" alt="Ich vor Notre-Dame in Paris" id="background-image" class="mobile" [ngClass]="{'active': currentSite === 'home'}">
+    <img src="./assets/pics/notredame-tablet.jpg" alt="Ich vor Notre-Dame in Paris" id="background-image" class="tablet" [ngClass]="{'active': currentSite === 'home'}">
+    <img src="./assets/pics/notredame-desktop.jpg" alt="Ich vor Notre-Dame in Paris" id="background-image" class="desktop" [ngClass]="{'active': currentSite === 'home'}">
+
+    <!-- webdesign -->
+    <img src="./assets/pics/boat-mobile.jpg" alt="Rudernd im Schlossteich von Versailles" id="background-image" class="mobile" [ngClass]="{'active': currentSite === 'webdesign'}">
+    <img src="./assets/pics/boat-tablet.jpg" alt="Rudernd im Schlossteich von Versailles" id="background-image" class="tablet" [ngClass]="{'active': currentSite === 'webdesign'}">
+    <img src="./assets/pics/boat-desktop.jpg" alt="Rudernd im Schlossteich von Versailles" id="background-image" class="desktop" [ngClass]="{'active': currentSite === 'webdesign'}">
+
+    <!-- business -->
+    <img src="./assets/pics/baywa-mobile.jpg" alt="Ich vor einem Surface Hub mit einer App im Auftrag von BayWa auf der ZLF 2016" id="background-image" class="mobile" [ngClass]="{'active': currentSite === 'business'}">
+    <img src="./assets/pics/baywa-tablet.jpg" alt="Ich vor einem Surface Hub mit einer App im Auftrag von BayWa auf der ZLF 2016" id="background-image" class="tablet" [ngClass]="{'active': currentSite === 'business'}">
+    <img src="./assets/pics/baywa-desktop.jpg" alt="Ich vor einem Surface Hub mit einer App im Auftrag von BayWa auf der ZLF 2016" id="background-image" class="desktop" [ngClass]="{'active': currentSite === 'business'}">
+
+    <!-- about me -->
+    <img src="./assets/pics/three.jpg" alt="BayWa" id="background-image" [ngClass]="{'active': currentSite === 'aboutme'}">
 </div>

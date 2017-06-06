@@ -17,7 +17,27 @@
         opacity: 0;
     }
     .active {
-        @include filter-i(blur(5px) grayscale(10%));
+        @include filter-i(blur(2px) grayscale(30%));
         opacity: 1 !important;
+    }
+    .mobile {
+        @media screen and (min-width: $tablet-min) {
+            display: none;
+        }
+    }
+    .tablet {
+        display: none;
+        @media screen and (min-width: $tablet-min) {
+            display: inline;
+        }
+        @media screen and (min-width: $desktop-min) {
+            display: none;
+        }
+    }
+    .desktop {
+        display: none;
+        @media screen and (min-width: $desktop-min) {
+            display: inline;
+        }
     }
 }

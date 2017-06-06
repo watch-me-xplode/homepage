@@ -8,16 +8,13 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from
 export class BackgroundImageComponent implements OnInit, OnChanges {
   @Input() currentSite: string;
 
-  private imageOneActive = true;
-
   constructor() { }
 
   ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    const site: SimpleChange = (<any>changes).currentSite.currentValue;
+    const site: SimpleChange = (<any>changes).currentSite;
     this.currentSite = site.currentValue;
-    this.imageOneActive = !this.imageOneActive;
   }
 
 }
