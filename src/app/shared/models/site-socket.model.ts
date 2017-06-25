@@ -41,11 +41,27 @@ export class SiteSocketContainer {
      */
     public setPosition(coords: Point[], widths: number[]): void {
         if ((coords.length === widths.length) && (coords.length === this.containers.length)) {
+            this.adaptPosition(coords, widths);
             for (let i = 0; i < this.containers.length; i++) {
                 this.containers[i].setPosition(coords[i].x, coords[i].y, widths[i]);
             }
         }  else {
             console.log('Warning: Arraylenght of coords, widths and containerelements is unequal.');
+        }
+    }
+
+    /**
+     * Adapt the positon of the containers to match current viewwidth.
+     *  If the container is to far on the right side, the x-coord is adapted to match the viewwidth.
+     * @param coords An Array of Points which represents the starting coords of each text container.
+     * @param widths An Array which represents the length of each text container
+     */
+    private adaptPosition(coords: Point[], widths: number[]): void {
+        const viewwidth = window.innerWidth;
+        for (let i = 0; i < coords.length; i++) {
+            if (coords[i].x + widths[i] > viewwidth) {
+                coords[i].x = viewwidth - widths[i];
+            }
         }
     }
 }

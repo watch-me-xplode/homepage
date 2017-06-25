@@ -15,7 +15,13 @@ export class AppComponent implements OnInit {
 
   constructor(private fontDrawer: FontDrawer) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    window.addEventListener('resize', () => {
+      setTimeout(() => {
+        location.reload();
+      }, 300);
+    });
+  }
 
   private updateCanvas(site: SiteSocketContainer): void {
     this.fontDrawer.draw(site);
