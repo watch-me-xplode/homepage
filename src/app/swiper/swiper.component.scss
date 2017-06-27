@@ -2,8 +2,9 @@
 $wrapperWidth: $desktop-min;
 $slideWidth: 800px;
 $slideHeight: 400px;
+$borderRadius: 100px;
 #swiper-slide-wrapper {
-    border-radius: 20px;
+    border-radius: 10px;
     height: $slideHeight;
     margin-left: auto;
     margin-right: auto;
@@ -22,14 +23,17 @@ $slideHeight: 400px;
         position: absolute;
         transition: transform 15s linear;
         width: $slideWidth;
-        img {
-            border-radius: 20px;
+        a {
             display: block;
-            left: 2.5%;
-            position: absolute;
-            top: 0;
-            width: 95%;
-            z-index: -1;
+            img {
+                border-radius: $borderRadius;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: -1;
+            }
         }
     }
     .ready {
