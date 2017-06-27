@@ -17,6 +17,8 @@ import { BackgroundImageComponent } from './background-image/background-image.co
 import { HomeComponent } from './home/home.component';
 import { AboutMeComponent } from './about-me/about-me.component';
 import { ImpressumComponent } from './impressum/impressum.component';
+import { SwiperComponent } from './swiper/swiper.component';
+import { SwiperVerticalComponent } from './swiper-vertical/swiper-vertical.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ImpressumComponent } from './impressum/impressum.component';
     BackgroundImageComponent,
     HomeComponent,
     AboutMeComponent,
-    ImpressumComponent
+    ImpressumComponent,
+    SwiperComponent,
+    SwiperVerticalComponent
   ],
   imports: [
     BrowserModule,

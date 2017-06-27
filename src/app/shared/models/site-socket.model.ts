@@ -51,7 +51,7 @@ export class SiteSocketContainer {
     }
 
     /**
-     * Adapt the positon of the containers to match current viewwidth.
+     * Adapt the positon and width of the containers to match current viewwidth.
      *  If the container is to far on the right side, the x-coord is adapted to match the viewwidth.
      * @param coords An Array of Points which represents the starting coords of each text container.
      * @param widths An Array which represents the length of each text container
@@ -59,6 +59,9 @@ export class SiteSocketContainer {
     private adaptPosition(coords: Point[], widths: number[]): void {
         const viewwidth = window.innerWidth;
         for (let i = 0; i < coords.length; i++) {
+            if (widths[i] > viewwidth) {
+                widths[i] = viewwidth;
+            }
             if (coords[i].x + widths[i] > viewwidth) {
                 coords[i].x = viewwidth - widths[i];
             }

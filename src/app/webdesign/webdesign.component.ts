@@ -15,7 +15,6 @@ export class WebdesignComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-      //const text: string[] = [`A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred music, or a noble picture, or a passage from the grander poets. It always does one good.`];
       const text: string[] = [`good.`];
       text.push(text[0]);
       text.push(text[0]);

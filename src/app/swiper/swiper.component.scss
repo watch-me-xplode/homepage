@@ -1,0 +1,43 @@
+@import "../shared/scss/general/general";
+$wrapperWidth: $desktop-min;
+$slideWidth: 800px;
+$slideHeight: 400px;
+#swiper-slide-wrapper {
+    border-radius: 20px;
+    height: $slideHeight;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: relative;
+    width: $wrapperWidth;
+    .swiper-slide {
+        align-content: space-around;
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: 100%;
+        justify-content: center;
+        position: absolute;
+        transition: transform 15s linear;
+        width: $slideWidth;
+        img {
+            border-radius: 20px;
+            display: block;
+            left: 2.5%;
+            position: absolute;
+            top: 0;
+            width: 95%;
+            z-index: -1;
+        }
+    }
+    .ready {
+        opacity: 0;
+        transform: translate($wrapperWidth, 0) !important;
+    }
+    .finished {
+        opacity: 1;
+        transform: translate(-$slideWidth, 0) !important;
+    }
+}

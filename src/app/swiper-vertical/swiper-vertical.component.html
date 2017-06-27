@@ -1,0 +1,124 @@
+<div id="swiper-vertical-slide-wrapper">
+    <!-- initial slides -->
+    <div class="swiper-vertical-slide" [ngClass]="counterStarted ? 'init-up' : 'init-down'">
+        <p>Gartenberatung und Planung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="counterStarted ? 'init-up' : 'init-down'">
+        <p>Skizzierung und Zeichnung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="counterStarted ? 'init-up' : 'init-down'">
+        <p>Gestaltung, Dekoration</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="counterStarted ? 'init-up' : 'init-down'">
+        <p>Garten, Wintergarten</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="counterStarted ? 'init-up' : 'init-down'">
+        <p>Farbberatung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="counterStarted ? 'init-up' : 'init-down'">
+        <p>Stilfragen auch im Innenbereich</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="counterStarted ? 'init-up' : 'init-down'">
+        <p>Hilfe zur Selbsthilfe</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+
+    <!-- animated slides -->
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(0) ? 'up' : 'down'">
+        <p>Gartenberatung und Planung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(1) ? 'up' : 'down'">
+        <p>Skizzierung und Zeichnung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(2) ? 'up' : 'down'">
+        <p>Gestaltung, Dekoration</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(3) ? 'up' : 'down'">
+        <p>Garten, Wintergarten</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(4) ? 'up' : 'down'">
+        <p>Farbberatung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(5) ? 'up' : 'down'">
+        <p>Stilfragen auch im Innenbereich</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(6) ? 'up' : 'down'">
+        <p>Hilfe zur Selbsthilfe</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(7) ? 'up' : 'down'">
+        <p>Ausführung durch Landschaftsgärtner meines Vertrauens</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(8) ? 'up' : 'down'">
+        <p>Betreuung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(9) ? 'up' : 'down'">
+        <p>Grabgestaltung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(10) ? 'up' : 'down'">
+        <p>Saisonale Pflanzendekoration in Schalen und Kübeln</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(11) ? 'up' : 'down'">
+        <p>Gartenberatung und Planung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(12) ? 'up' : 'down'">
+        <p>Skizzierung und Zeichnung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(13) ? 'up' : 'down'">
+        <p>Gestaltung, Dekoration</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(14) ? 'up' : 'down'">
+        <p>Garten, Wintergarten</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(15) ? 'up' : 'down'">
+        <p>Farbberatung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(16) ? 'up' : 'down'">
+        <p>Stilfragen auch im Innenbereich</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(17) ? 'up' : 'down'">
+        <p>Hilfe zur Selbsthilfe</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(18) ? 'up' : 'down'">
+        <p>Ausführung durch Landschaftsgärtner meines Vertrauens</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(19) ? 'up' : 'down'">
+        <p>Betreuung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(20) ? 'up' : 'down'">
+        <p>Grabgestaltung</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+    <div class="swiper-vertical-slide" [ngClass]="isSlideVisible(21) ? 'up' : 'down'">
+        <p>Saisonale Pflanzendekoration in Schalen und Kübeln</p>
+        <img src="../../assets/pics/iconBlume16.png" alt="filling">
+    </div>
+</div>
+
+        
