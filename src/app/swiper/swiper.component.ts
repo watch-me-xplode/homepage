@@ -9,7 +9,7 @@ export class SwiperComponent implements OnInit {
 
   private indexCounter = 0;
   private counterStarted = false;
-  private readonly slideCount = 7;
+  private readonly slideCount = 6;
   private readonly visibleSlides = 3;
 
   constructor() { }
@@ -17,6 +17,9 @@ export class SwiperComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.counterStarted = true;
+      // first round, all other rounds with setInterval
+      this.indexCounter++;
+      this.indexCounter = this.indexCounter % this.slideCount;
       setInterval(() => {
         this.indexCounter++;
         this.indexCounter = this.indexCounter % this.slideCount;

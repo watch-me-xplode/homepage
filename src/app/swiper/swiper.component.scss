@@ -1,47 +1,53 @@
 @import "../shared/scss/general/general";
 $wrapperWidth: $desktop-min;
-$slideWidth: 800px;
-$slideHeight: 400px;
-$borderRadius: 100px;
-#swiper-slide-wrapper {
-    border-radius: 10px;
-    height: $slideHeight;
+$slideWidth: 600px;
+$slideHeight: 300px;
+$borderRadius: 60px;
+#wrapper {
+    height: 100vh;
     margin-left: auto;
     margin-right: auto;
-    overflow: hidden;
     position: relative;
     width: $wrapperWidth;
-    .swiper-slide {
-        align-content: space-around;
-        align-items: center;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        height: 100%;
-        justify-content: center;
+    #swiper-slide-wrapper {
+        bottom: 10rem;
+        border-radius: 10px;
+        height: $slideHeight;
+        overflow: hidden;
         position: absolute;
-        transition: transform 15s linear;
-        width: $slideWidth;
-        a {
-            display: block;
-            img {
-                border-radius: $borderRadius;
+        width: $wrapperWidth;
+        .swiper-slide {
+            align-content: space-around;
+            align-items: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            height: 100%;
+            justify-content: center;
+            position: absolute;
+            transition: transform 15s linear;
+            width: $slideWidth;
+            a {
                 display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                z-index: -1;
+                img {
+                    border-radius: $borderRadius;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    z-index: -1;
+                }
             }
         }
-    }
-    .ready {
-        opacity: 0;
-        transform: translate($wrapperWidth, 0) !important;
-    }
-    .finished {
-        opacity: 1;
-        transform: translate(-$slideWidth, 0) !important;
+        .ready {
+            opacity: 0;
+            transform: translate($wrapperWidth, 0) !important;
+        }
+        .finished {
+            opacity: 1;
+            transform: translate(-$slideWidth, 0) !important;
+        }
     }
 }

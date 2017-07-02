@@ -15,11 +15,10 @@ export class WebdesignComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-      const text: string[] = [`good.`];
-      text.push(text[0]);
-      text.push(text[0]);
+      const text: string[] = ['Sie möchten Ihren aktuellen Internetauftritt verbessern oder eine gänzlich neue Webseite?'];
+      text.push('Vorteile: kostengünstig, stilvoll, ansprechend');
       const siteSocket = new SiteSocketContainer(text);
-      siteSocket.setPosition([new Point(0, 0), new Point(0, 130), new Point(0, 260)], [500, 500, 500]);
+      siteSocket.setPosition([new Point(0, 0), new Point(0, 130)], [500, 500]);
       this.updateCanvas.emit(siteSocket);
   }
 }
