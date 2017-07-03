@@ -20,10 +20,9 @@ export class AboutMeComponent implements OnInit {
         'viel Spaß und ist auch eine hervorragende Abwechslung zur alltäglichen Schreibtischarbeit. Ich bin auch sehr oft mit dem ' +
         'Fahrrad unterwegs oder gehe zusätzlich zum Sport im Verein mit Freunden auf den Sportplatz.');
       text.push('Ich schaue sehr gerne Filme und Serien und bin großer Fan des Marvel Cinematic Universe und von "A Song of Ice and ' +
-        'Fire" (Bücher und Serie).' +
-        'Fahrrad unterwegs oder gehe zusätzlich zum Sport im Verein mit Freunden auf den Sportplatz.');
+        'Fire" (Bücher und Fernsehserie).');
       const siteSocket = new SiteSocketContainer(text);
-      siteSocket.setPosition([new Point(0, 0), new Point(0, 200)], [500, 500]);
+      siteSocket.setPosition([new Point(0, 0), new Point(0, 100), new Point(0, 300)], [500, 500, 500]);
       this.updateCanvas.emit(siteSocket);
   }
 
